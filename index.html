@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="Turn 360° panoramas into Roblox skyboxes with Skybox Studio.">
+    <title>Skybox Studio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <header class="navbar">
+        <a href="#" class="brand">
+            <span class="brand-mark">✳</span>
+            <span>skybox<span class="brand-accent">.studio</span></span>
+        </a>
+
+        <nav>
+            <a href="#converter">Converter</a>
+            <a href="#how-it-works">How it works</a>
+            <a class="nav-github" href="https://github.com/devjayosch/SkyboxStudio" target="_blank" rel="noopener noreferrer">Source code ↗</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">>
+
+            <h1>Create your world<br>with <span>Skybox Studio.</span></h1>
+
+            <p class="hero-description">
+                Transform 360° panoramas into beautiful Roblox skyboxes.
+                Upload your image, generate six faces, and bring your world to life.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#converter" class="primary-button">Start creating <span>↗</span></a>
+                <a href="#how-it-works" class="secondary-link">How it works <span>↓</span></a>
+            </div>
+
+            <div class="hero-meta">
+                <span>● Free to use</span>
+                <span>Six skybox faces</span>
+                <span>No account required</span>
+            </div>
+        </section>
+
+        <section id="converter" class="converter-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">THE WORKSPACE</span>
+                    <h2>Panorama converter</h2>
+                    <p>Upload a 360° panorama to get started.</p>
+                </div>
+                <span class="workspace-badge">Browser-based</span>
+            </div>
+
+            <div class="workspace">
+                <div class="upload-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Upload panorama</h3>
+                            <p>Choose an equirectangular image.</p>
+                        </div>
+                        <span class="step-number">01</span>
+                    </div>
+
+                    <input type="file" id="imageInput" accept="image/*" hidden>
+                    <input type="hidden" id="cubeRotation" value="0">
+
+                    <div id="dropzone" class="dropzone" role="button" tabindex="0" aria-label="Upload panorama">
+                        <div class="upload-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                                <path d="M12 16V4m-5 5 5-5 5 5"/>
+                                <path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/>
+                            </svg>
+                        </div>
+                        <h4>Drop your image here</h4>
+                        <p>or <button type="button" id="browseButton" class="text-button">browse files</button></p>
+                        <span class="file-types">PNG, JPG, JPEG, WEBP</span>
+                    </div>
+
+                    <div id="fileNameDisplay" class="file-name-display" hidden></div>
+                    <p id="errorMessage" class="error-message" role="alert" hidden></p>
+
+                    <div class="upload-note">
+                        <span>ⓘ</span>
+                        Your image is processed locally in your browser.
+                    </div>
+                </div>
+
+                <div class="output-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Your skybox</h3>
+                            <p>Six textures, ready for Roblox Studio.</p>
+                        </div>
+                        <span class="step-number">02</span>
+                    </div>
+
+                    <div id="generating" class="loading-state" hidden>
+                        <div class="spinner"></div>
+                        <span id="loadingText">Generating skybox...</span>
+                    </div>
+
+                    <div id="faces" class="faces-grid">
+                        <div class="empty-state">
+                            <div class="empty-icon">◈</div>
+                            <h4>Your textures will appear here</h4>
+                            <p>Upload a panorama to generate all six skybox faces.</p>
+                        </div>
+                    </div>
+
+                    <div class="output-footer">
+                        <span class="output-info">6 textures · PNG</span>
+                        <button type="button" id="downloadAllLink" class="secondary-button" disabled>
+                            Download all <span>↓</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="guide-section">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">GETTING STARTED</span>
+                    <h2>Three steps. One skybox.</h2>
+                    <p>Everything you need to create your next Roblox environment.</p>
+                </div>
+            </div>
+
+            <div class="guide-grid">
+                <article class="guide-card">
+                    <span class="guide-number">01</span>
+                    <div class="guide-symbol">↑</div>
+                    <h3>Upload</h3>
+                    <p>Choose a 360° panorama from your device. Wide equirectangular images work best.</p>
+                </article>
+
+                <article class="guide-card">
+                    <span class="guide-number">02</span>
+                    <div class="guide-symbol">◈</div>
+                    <h3>Generate</h3>
+                    <p>Skybox Studio converts your panorama into six individual textures automatically.</p>
+                </article>
+
+                <article class="guide-card">
+                    <span class="guide-number">03</span>
+                    <div class="guide-symbol">↓</div>
+                    <h3>Import</h3>
+                    <p>Download your textures and assign them to the Sky properties of Roblox Studio.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="tip-section">
+            <div class="tip-icon">✳</div>
+            <div>
+                <h3>Made for creators</h3>
+                <p>For the best results, use a high-resolution 360° panorama with a 2:1 aspect ratio, such as 4096 × 2048.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#" class="brand">
+            <span class="brand-mark">✳</span>
+            <span>skybox<span class="brand-accent">.studio</span></span>
+        </a>
+
+        <p class="footer-tagline">Built for creators who think beyond the horizon.</p>
+
+        <div class="footer-credits">
+            <span>Designed &amp; built by <strong>Jay</strong></span>
+            <span class="credit-separator">·</span>
+            <a href="https://github.com/devjayosch/SkyboxStudio" target="_blank" rel="noopener noreferrer">
+                Based on panorama-to-cubemap ↗
+            </a>
+        </div>
+
+        <span class="footer-note">Free to use · Made for Roblox creators</span>
+    </footer>
+</body>
+</html>
